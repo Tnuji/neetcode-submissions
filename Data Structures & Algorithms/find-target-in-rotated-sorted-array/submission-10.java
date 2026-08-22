@@ -1,0 +1,35 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int middle = left + (right - left)/ 2;
+
+        while(left <= right)
+        {
+            
+            if(target == nums[middle]) return middle;
+            else if(nums[middle] >= nums[left])
+            {
+                if(target > nums[middle] || target < nums[left])
+                {
+                    left = middle + 1;
+                }
+                else
+                {
+                    right = middle - 1;
+                }
+            }
+            else{
+                if(target < nums[middle] || target > nums[right])
+                {
+                    right = middle - 1;
+                }
+                else{
+                    left = middle + 1;
+                }
+            }
+            middle = left + (right - left) / 2;
+        }
+        return -1;
+    }
+}
